@@ -30,48 +30,56 @@
             </table>
             <hr>
         </form>
+
+       
+           
+       
+
+
         <script>
-            let name = "";
+function validateName() 
+{
+    let name = document.getElementById("name").value;
+    let nerror = document.getElementById("nerror");
+    let firstChar = name[0];
+        let firstCharCode = firstChar.charCodeAt(0);
 
-            let nerror = document.getElementById("nerror");
-            let firstChar = name[0];
-            let alchar =name[length];
-            
-            function validateName() {
-                name = document.getElementById("name").value;
-                if (name.length==0){
-                    nerror.innerHTML = "please type username first!"
-                    
-                    return false;
-                }
-                else if (name.length < 2) {
-                    nerror.innerHTML = "Name must be at least 2 characters long";
-                    return false;
-
-                } 
-                else if(!( (firstChar >= 65 && firstChar <= 90) || 
-        (firstChar >= 97 && firstChar <= 122) ))  {
-                   nerror.innerHTML = "Name must start with a letter";
-                   return false;
-
-                }
-               else if(!( (alchar >= 65 && alchar <= 90) || 
-                   (alchar >= 97 && alchar <= 122) || (alchar=45) || (alchar=46)))  {
-                   nerror.innerHTML = "Name Can contain a-z or A-Z or dot(.) or dash(-)";
-                   return false;
-
-                }
-               
-
-
-                else {
-                    nerror.innerHTML = "";
-                    return true;
-                }
+    if (name.length === 0) {
+        nerror.innerHTML = "Please type username first!";
+        return false;
+    } 
+    else if (name.length < 2) {
+        nerror.innerHTML = "Name must be at least 2 characters long";
+        return false;
+    } 
+    else if(!((firstCharCode >= 65 && firstCharCode <= 90) || 
+              (firstCharCode >= 97 && firstCharCode <= 122))) {
+            nerror.innerHTML = "Name must start with a letter";
+            return false;
+        }
+    else{
+         for (let i = 0; i < name.length; i++) {
+            let charCode = name[i].charCodeAt(0);
+            if (
+                !((charCode >= 65 && charCode <= 90) ||  
+                  (charCode >= 97 && charCode <= 122) || 
+                  charCode === 45 ||                     
+                  charCode === 46)                       
+            ) {
+                nerror.innerHTML = "Name can contain only a-z, A-Z, dot (.) or dash (-)";
+                return false;
             }
+        }
 
+        
+        nerror.innerHTML = "";
+        return true;
+    }
+
+    }
+
+     
     
-
 
         </script>
 
