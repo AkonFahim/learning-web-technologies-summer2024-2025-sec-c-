@@ -37,10 +37,13 @@
 
 
         <script>
+
+            
 function validateName() 
 {
     let name = document.getElementById("name").value;
     let nerror = document.getElementById("nerror");
+    
     let firstChar = name[0];
         let firstCharCode = firstChar.charCodeAt(0);
 
@@ -76,7 +79,29 @@ function validateName()
         return true;
     }
 
+
+
+
     }
+
+    function validateEmail() {
+            let email = document.getElementById("email").value;
+            let eerror = document.getElementById("eerror");
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email.length === 0) {
+                eerror.innerHTML = "Please type email first!";
+                return false;
+            } else if (!emailPattern.test(email)) {
+                eerror.innerHTML = "Invalid email format";
+                return false;
+            } else {
+                eerror.innerHTML = "";
+                return true;
+            }
+        }
+
+            
+
 
      
     
@@ -93,7 +118,8 @@ function validateName()
                 </tr>
                 <tr>
                     <td>
-                      <input type="text">
+                      <input type="text" name="email" value="" id="email" onblur="validateEmail()">
+                      <p id="eerror"></p>
 
                     </td>
                 </tr>
